@@ -146,7 +146,7 @@ function Home() {
               )}
               containerProps={containerPropsTercText}
               textProps={textPropsSecondText}
-              text={` • You can try 3 times before choosing your gift. `}
+              text={` • You can try 3 times before choosing your gift.But, only can choose only the last prize. `}
             />
           )}
           {typeTextAnimationFinished[typeTextsAnimation.quartTypeText] && (
