@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Flex, Image } from '@chakra-ui/react';
-import { motion, useInView, useScroll } from 'framer-motion';
+import { motion } from 'framer-motion';
 import TypeAnimation from '../shared/TypeAnimation';
 
 const descriptionOfPrizesText = { fontSize: 'lg', color: 'white' };

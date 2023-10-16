@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import stitchGifts from '../assets/stitchGifts.png';
 import { motion } from 'framer-motion';

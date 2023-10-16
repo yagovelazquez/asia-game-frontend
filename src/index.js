@@ -12,7 +12,6 @@ import theme from './theme';
 import Home from './views/Home';
 import SpinWheelGame from './views/SpinWheelGame';
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const container = document.getElementById('root');
@@ -49,8 +48,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+initializeApp(firebaseConfig);
 
 const queryClient = new QueryClient(  {defaultOptions: {
   queries: {

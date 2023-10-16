@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Box, Flex } from '@chakra-ui/react';
+import { Text, Flex } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 
 const pulse = keyframes`

@@ -24,7 +24,7 @@ function SpinWheelGame() {
     navigate('/');
   }, [navigate]);
 
-  const { data, error, isLoading } = useQuery([queryKeys.gameData], () =>
+  const { isLoading } = useQuery([queryKeys.gameData], () =>
     gameClient.fetchData('data')
   );
 

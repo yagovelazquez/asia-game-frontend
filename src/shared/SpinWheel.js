@@ -3,15 +3,12 @@ import {
   Button,
   VStack,
   Text,
-  Center,
   UnorderedList,
   ListItem,
   Flex,
 } from '@chakra-ui/react';
-import { FaRedo } from 'react-icons/fa';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { gameClient } from '../client/speelWheelGameClient';
-import { ChakraProvider, Modal, ModalOverlay, Spinner } from '@chakra-ui/react';
 import { queryKeys } from '../config/config';
 import CountdownTimer from './CountdownTimer';
 import AttemptsIndicator from './AttemptsIndicator';
@@ -48,7 +45,7 @@ const ACCELERATED_SPEED = 10; // Speed when button is clicked
 function SpinWheel() {
   const canvasSize = 500;
   const queryClient = useQueryClient();
-  const { data, error, isLoading } = useQuery([queryKeys.gameData], () =>
+  const { data, isLoading } = useQuery([queryKeys.gameData], () =>
     gameClient.fetchData('data')
   );
   const { mutate: mutateUpdateGameData, isLoading: isLoadingMutateGameData } =
@@ -62,14 +59,12 @@ function SpinWheel() {
   const [isDecelerating, setIsDecelerating] = useState(false);
   const [speed, setSpeed] = useState(INITIAL_SPEED);
   const [stopTime, setStopTime] = useState(null); 
-  console.log(stopTime)
 
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
 
   const handleSpinClick = useCallback(async () => {
     if (data?.finishData) return;
-    console.log(data?.timeRunning, typeof data?.timeRunning)
     setSpeed(ACCELERATED_SPEED);
     const randomStopTime =
       new Date().getTime() + data?.timeRunning + Math.random() * 2000;
