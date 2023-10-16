@@ -5,7 +5,6 @@ import {
   Modal,
   ModalOverlay,
   Spinner,
-  useQuery,
 } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +16,7 @@ import stitchHeart from '../assets/stitchHeart.gif';
 import SpinWheel from '../shared/SpinWheel';
 import { queryKeys } from '../config/config';
 import { gameClient } from '../client/speelWheelGameClient';
+import { useQuery } from '@tanstack/react-query';
 
 function SpinWheelGame() {
   const navigate = useNavigate();
@@ -27,6 +27,8 @@ function SpinWheelGame() {
   const { data, isLoading } = useQuery([queryKeys.gameData], () =>
     gameClient.fetchData('data')
   );
+
+  console.log(data)
 
   const [fakeIsloading, setIsFakeLoading] = useState(true);
 
