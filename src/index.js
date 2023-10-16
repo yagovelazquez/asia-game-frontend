@@ -1,17 +1,71 @@
-import { ColorModeScript } from '@chakra-ui/react';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
+import theme from './theme';
+import Home from './views/Home';
+import SpinWheelGame from './views/SpinWheelGame';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/spin-wheel-game',
+    element: <SpinWheelGame />,
+  },
+  {
+    path: '*',
+    element: <Navigate to={'/'} />,
+  },
+]);
+
+// Import the functions you need from the SDKs you need
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCCjB8spvVbxGlFyePhlUFWPIMo2jLNEsc",
+  authDomain: "asiagame-48d9c.firebaseapp.com",
+  projectId: "asiagame-48d9c",
+  storageBucket: "asiagame-48d9c.appspot.com",
+  messagingSenderId: "11385678944",
+  appId: "1:11385678944:web:bf7775473c72a67e592705",
+  measurementId: "G-LRZGHJTPBT"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+const queryClient = new QueryClient(  {defaultOptions: {
+  queries: {
+    refetchOnWindowFocus: false, // default: true
+  },
+},})
 
 root.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <ChakraProvider theme={theme}>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ChakraProvider>
   </StrictMode>
 );
 

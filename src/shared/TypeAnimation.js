@@ -35,7 +35,7 @@ function TypeAnimation({
     }, speed);
 
     return () => clearInterval(interval);
-  }, [offset, onAnimationComplete, text]);
+  }, [offset, onAnimationComplete, speed, text]);
 
   return (
     <Flex {...containerProps} gap={1} position="relative" alignItems={'bottom'}>

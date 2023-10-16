@@ -1,37 +1,29 @@
 import React, { useCallback, useState } from 'react';
 import {
-  ChakraProvider,
   Box,
   Flex,
-  AspectRatio,
   Image,
 } from '@chakra-ui/react';
-import TypeAnimation from './shared/TypeAnimation';
-import theme from './theme';
-import angelBg from './assets/angelBg.png';
-import stitchSlap from './assets/stitchSlap.gif';
-import stitchGifts from './assets/stitchGifts.png';
-import gdanskStitch from './assets/gdanskStitch.jpg';
-import stitchAmusement from './assets/stitchAmusement.png';
-import stitchCrazy from './assets/stitchCrazy.jpg';
-import stitchCroatia from './assets/stitchCroatia.png';
-import stitchIceland from './assets/stitchIceland.png';
-import stitchLeprechaun from './assets/stitchLeprechaun.png';
-import stitchPinapple from './assets/stitchPinapple.jpg';
-import stitchRome from './assets/stitchRome.png';
-import stitchGreece from './assets/stitchGreece.jpg';
-import stitchScotland from './assets/stitchScotland.jpg';
-import stitchDancing from './assets/stitchDancing.gif';
+import TypeAnimation from '../shared/TypeAnimation';
+import angelBg from '../assets/angelBg.png';
+import stitchSlap from '../assets/stitchSlap.gif';
+import gdanskStitch from '../assets/gdanskStitch.jpg';
+import stitchAmusement from '../assets/stitchAmusement.png';
+import stitchCroatia from '../assets/stitchCroatia.png';
+import stitchIceland from '../assets/stitchIceland.png';
+import stitchLeprechaun from '../assets/stitchLeprechaun.png';
+import stitchPinapple from '../assets/stitchPinapple.jpg';
+import stitchRome from '../assets/stitchRome.png';
+import stitchGreece from '../assets/stitchGreece.jpg';
+import stitchScotland from '../assets/stitchScotland.jpg';
+import stitchDancing from '../assets/stitchDancing.gif';
 
-import { motion } from 'framer-motion';
-import CheckPrizesWin from './stitchGifts/CheckPrizesWin';
-import Prize from './stitchGifts/Prize';
+import CheckPrizesWin from '../stitchGifts/CheckPrizesWin';
+import Prize from '../stitchGifts/Prize';
 import { useNavigate } from 'react-router-dom';
-import Button from './shared/Button';
+import Button from '../shared/Button';
 
 const textPropsSecondText = { fontSize: 'lg' };
-const titleTextOfThePrizes = { fontSize: '3xl', color: 'white' };
-const descriptionOfPrizesText = { fontSize: 'lg', color: 'white' };
 const containerPropsSecondText = { maxWidth: '500px', mt: 8 };
 const containerPropsTercText = { maxWidth: '500px', my: 1 };
 const containerPropsQuartText = { maxWidth: '500px' };
@@ -79,7 +71,7 @@ const typeTextsAnimation = Object.freeze({
   fortiethTypeText: 'fortiethTypeText',
 });
 
-function App() {
+function Home() {
   const [typeTextAnimationFinished, setTypeTextAnimationFinished] =
     useState(false);
 
@@ -308,6 +300,7 @@ function App() {
           <Button
             variant="solid"
             mb={4}
+            isDisabled={!typeTextAnimationFinished[typeTextsAnimation.thirtySeventhTypeText]}
             mr={4}
             alignSelf="flex-end"
             onClick={playTheGameHandler}
@@ -320,4 +313,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
