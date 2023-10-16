@@ -61,13 +61,15 @@ function SpinWheel() {
   const [currentDegree, setCurrentDegree] = useState(0);
   const [isDecelerating, setIsDecelerating] = useState(false);
   const [speed, setSpeed] = useState(INITIAL_SPEED);
-  const [stopTime, setStopTime] = useState(null); // Initialize as null
+  const [stopTime, setStopTime] = useState(null); 
+  console.log(stopTime)
 
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
 
   const handleSpinClick = useCallback(async () => {
     if (data?.finishData) return;
+    console.log(data?.timeRunning, typeof data?.timeRunning)
     setSpeed(ACCELERATED_SPEED);
     const randomStopTime =
       new Date().getTime() + data?.timeRunning + Math.random() * 2000;
@@ -268,31 +270,8 @@ function SpinWheel() {
     data?.finishData,
   ]);
 
-  const [fakeIsloading, setIsFakeLoading] = useState(true);
-
-  useEffect(() => {
-    let timer;
-    if (fakeIsloading) {
-      timer = setTimeout(() => {
-        setIsFakeLoading(false);
-      }, 1000);
-    }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [fakeIsloading, isLoading]);
-
   return (
     <>
-      <ChakraProvider>
-        <Modal isOpen={isLoading || fakeIsloading} isCentered>
-          <ModalOverlay bg="white">
-            <Center height="100vh">
-              <Spinner size="xl" />
-            </Center>
-          </ModalOverlay>
-        </Modal>
-      </ChakraProvider>
       {!isLoading && (
         <VStack spacing={4}>
           <canvas
