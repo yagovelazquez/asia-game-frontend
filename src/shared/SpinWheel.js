@@ -7,7 +7,7 @@ import {
   ListItem,
   Flex,
 } from '@chakra-ui/react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { gameClient } from '../client/speelWheelGameClient';
 import { queryKeys } from '../config/config';
 import CountdownTimer from './CountdownTimer';
@@ -42,12 +42,9 @@ const segmentColors = [
 const INITIAL_SPEED = 1; // Initial slow speed
 const ACCELERATED_SPEED = 10; // Speed when button is clicked
 
-function SpinWheel() {
+function SpinWheel({data, isLoading}) {
   const canvasSize = 500;
   const queryClient = useQueryClient();
-  const { data, isLoading } = useQuery([queryKeys.gameData], () =>
-    gameClient.fetchData('data')
-  );
   const { mutate: mutateUpdateGameData, isLoading: isLoadingMutateGameData } =
     useMutation(gameClient.updateData, {
       onSuccess: async () => {

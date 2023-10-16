@@ -24,7 +24,7 @@ function SpinWheelGame() {
     navigate('/');
   }, [navigate]);
 
-  const { isLoading } = useQuery([queryKeys.gameData], () =>
+  const { data, isLoading } = useQuery([queryKeys.gameData], () =>
     gameClient.fetchData('data')
   );
 
@@ -87,7 +87,7 @@ function SpinWheelGame() {
             src={stitchHeart}
             alt="Prize Image"
           />
-          <SpinWheel />
+          <SpinWheel data={data} isLoading={isLoading} />
           <Flex alignSelf="flex-end">
             <Image
               height={270}
