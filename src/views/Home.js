@@ -158,7 +158,19 @@ function Home() {
               )}
               containerProps={containerPropsQuartText}
               textProps={textPropsSecondText}
-              text={` • Every spin takes 6h to reveal which prize you won! `}
+              text={` • Every spin takes 30min to reveal which prize you won! `}
+            />
+          )}
+                    {typeTextAnimationFinished[typeTextsAnimation.quartTypeText] && (
+            <TypeAnimation
+              typeTextAnimationFinished={typeTextAnimationFinished}
+              onAnimationComplete={handleFirstAnimationComplete.bind(
+                null,
+                typeTextsAnimation.fiveTypeText
+              )}
+              containerProps={containerPropsQuartText}
+              textProps={textPropsSecondText}
+              text={` • You can close the window, turn off the computer or do whatever while you wait! `}
             />
           )}
         </Box>
